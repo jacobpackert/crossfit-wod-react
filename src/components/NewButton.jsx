@@ -9,4 +9,6 @@ class NewButton extends Component {
     }
 };
 
+// Now use .fetch() to call data (instead of jQuery as you usually do)
+
 export default NewButton;
