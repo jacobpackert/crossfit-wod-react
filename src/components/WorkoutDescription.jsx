@@ -3,7 +3,7 @@ import React from 'react';
 class WorkoutDescription extends React.Component {
     render () {
         return (
-            <p>{this.props.value}</p>
+            <div dangerouslySetInnerHTML={{__html: this.props.value}}></div>
         )
     }
 };

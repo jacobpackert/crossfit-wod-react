@@ -3,21 +3,17 @@ import React, { Component } from 'react';
 import NewButton from './components/NewButton';
 import WorkoutDescription from './components/WorkoutDescription';
 
+let url = "https://spreadsheets.google.com/feeds/list/1hwe64eKPIU7W-jvzFWR8MUzW9DrQerp67G7QBVxvdjk/od6/public/values?alt=json";
 
-  // Attempt to use the fetch API. Should be moved somewhere it makes sense, so that the button onClick will fetch data and send as props to components with workout description
-      let url = "https://spreadsheets.google.com/feeds/list/1hwe64eKPIU7W-jvzFWR8MUzW9DrQerp67G7QBVxvdjk/od6/public/values?alt=json";
-      let wod = "100 PUSHUPS";
-
-
-
-
+// I need to add shared state to App.js so it can be passed down to NewButton and WorkoutDescription. So Button.onClick -> updates state in App.js
 
 // The app component
 class App extends Component {
   constructor(){
     super();
     this.state = {
-      dataContent: [],
+      wodContent: [],
+      // buttonContent: [],
     };
   }
 
@@ -34,11 +30,12 @@ class App extends Component {
 
             response.json()
             .then(data => {
-              console.log("data: " + data.feed.entry[0].gsx$description.$t);
+              let wodNumber = Math.floor(data.feed.entry.length * Math.random());
+              console.log("wodNumber: " + wodNumber + ", data: " + data.feed.entry[wodNumber].gsx$description.$t);
               // console.log("response entry: " + data.feed.entry[0].gsx$description.$t);
               // let dataContent = data.feed.entry[0].gsx$description.$t;
               // console.log("dataContent: " + dataContent);
-              this.setState({ dataContent: data.feed.entry[0].gsx$description.$t })              
+              this.setState({ wodContent: data.feed.entry[wodNumber].gsx$description.$t })              
             });
           }
         )
@@ -57,15 +54,12 @@ class App extends Component {
         <p className="App-intro">
           This is going to be a cool project. Stay tuned..
         </p>
-        <WorkoutDescription value={this.state.dataContent}/>
+        <WorkoutDescription value={this.state.wodContent}/>
         < NewButton value="New WOD 💪" />
       </div>
       );
     }
   };
-  
-
-
   
 
 export default App;
