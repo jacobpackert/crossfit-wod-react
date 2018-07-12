@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import NewButton from './components/NewButton';
 import WorkoutDescription from './components/WorkoutDescription';
 
-let url = "https://spreadsheets.google.com/feeds/list/1hwe64eKPIU7W-jvzFWR8MUzW9DrQerp67G7QBVxvdjk/od6/public/values?alt=json";
+let url = process.env.REACT_APP_DB_URL;
 
 // I need to add shared state to App.js so it can be passed down to NewButton and WorkoutDescription. So Button.onClick -> updates state in App.js
 
@@ -13,14 +13,16 @@ class App extends Component {
     super();
     this.state = {
       wodContent: [],
-      // buttonContent: [],
+      buttonContent: ["New WOD"],
+      buttonContentEmoji: ["💪", "🏋️‍♂️", "🏃‍♂️"], //this can be mixed up so it's a random emoji later on
     };
   }
 
 
-  // Writing the fetch
+  // Writing the fetch when the component loads/mounts
   componentDidMount(){
 
+    
     fetch(url).then(
           response => {
             if (response.status !== 200) {
@@ -32,9 +34,6 @@ class App extends Component {
             .then(data => {
               let wodNumber = Math.floor(data.feed.entry.length * Math.random());
               console.log("wodNumber: " + wodNumber + ", data: " + data.feed.entry[wodNumber].gsx$description.$t);
-              // console.log("response entry: " + data.feed.entry[0].gsx$description.$t);
-              // let dataContent = data.feed.entry[0].gsx$description.$t;
-              // console.log("dataContent: " + dataContent);
               this.setState({ wodContent: data.feed.entry[wodNumber].gsx$description.$t })              
             });
           }
@@ -55,7 +54,7 @@ class App extends Component {
           This is going to be a cool project. Stay tuned..
         </p>
         <WorkoutDescription value={this.state.wodContent}/>
-        < NewButton value="New WOD 💪" />
+        < NewButton value={this.state.buttonContent} emoji={this.state.buttonContentEmoji} />
       </div>
       );
     }

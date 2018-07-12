@@ -8,18 +8,17 @@ class NewButton extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick() {
+    handleClick(e) {
+        e.preventDefault();
         console.log("button click")
     }
 
 
     render() {
         return (
-            <button onClick={this.handleClick}>{this.props.value}</button>
+            <button onClick={this.handleClick}>{this.props.value} {this.props.emoji}</button>
         )
     }
 };
-
-// Now use .fetch() to call data (instead of jQuery as you usually do)
 
 export default NewButton;
