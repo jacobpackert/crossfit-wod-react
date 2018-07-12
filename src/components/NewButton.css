@@ -5,6 +5,7 @@ button {
     color: #2979FF;
     padding: 15px 32px;
     text-align: center;
+    margin: auto;
     text-decoration: none;
     display: inline-block;
     font-size: 36px;
