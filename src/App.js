@@ -9,6 +9,7 @@ let url = process.env.REACT_APP_DB_URL;
 
 // The app component
 class App extends Component {
+  
   constructor(){
     super();
     this.state = {
@@ -16,32 +17,37 @@ class App extends Component {
       buttonContent: ["New WOD"],
       buttonContentEmoji: ["💪", "🏋️‍♂️", "🏃‍♂️"], //this can be mixed up so it's a random emoji later on
     };
+    this.setWodState.bind(this);
   }
 
+  setWodState(selectedWod){
+    this.setState({wodContent: selectedWod})
+  }
 
-  // Writing the fetch when the component loads/mounts
-  componentDidMount(){
+  handleButtonClick = () => {
+    console.log("button click")
 
-    
     fetch(url).then(
-          response => {
-            if (response.status !== 200) {
-              console.log("there is a problem!! " + response.status);
-              return;
-            }
+              response => {
+                if (response.status !== 200) {
+                  console.log("there is a problem!! " + response.status);
+                  return;
+                }
 
-            response.json()
-            .then(data => {
-              let wodNumber = Math.floor(data.feed.entry.length * Math.random());
-              console.log("wodNumber: " + wodNumber + ", data: " + data.feed.entry[wodNumber].gsx$description.$t);
-              this.setState({ wodContent: data.feed.entry[wodNumber].gsx$description.$t })              
+                response.json()
+                .then(data => {
+                  let wodNumber = Math.floor(data.feed.entry.length * Math.random());
+                  let selectedWod = data.feed.entry[wodNumber].gsx$description.$t;
+                  console.log("selectedWod: " + selectedWod);
+                  this.setWodState(selectedWod);
+                  // this.setState({ wodContent: data.feed.entry[wodNumber].gsx$description.$t })       //something about needing to .bind(this)       
+                });
+              }
+            )
+            .catch(function (err) {
+              console.log("Fetch error: ", err);
             });
-          }
-        )
-        .catch(function (err) {
-          console.log("Fetch error: ", err);
-        });
-  }
+      };
   
   
   render() {
@@ -53,8 +59,12 @@ class App extends Component {
         <p className="App-intro">
           This is going to be a cool project. Stay tuned..
         </p>
-        <WorkoutDescription value={this.state.wodContent}/>
-        < NewButton value={this.state.buttonContent} emoji={this.state.buttonContentEmoji} />
+        <WorkoutDescription wodContent={this.state.wodContent}/>
+        <NewButton 
+        buttonContent={this.state.buttonContent} 
+        emoji={this.state.buttonContentEmoji}
+        onButtonClick={this.handleButtonClick} 
+        />
       </div>
       );
     }
