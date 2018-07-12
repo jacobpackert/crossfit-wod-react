@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './App.css';
+import './App.css';
 import NewButton from './components/NewButton';
 import WorkoutDescription from './components/WorkoutDescription';
 
@@ -57,7 +57,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to the Random Crossfit Wod Generator</h1>
         </header>
         <p className="App-intro">
-          Welcome to the random workout generator. Click the button to receive a random workout.
+          Click the button to receive a random workout.
         </p>
         <WorkoutDescription wodContent={this.state.wodContent}/>
         <NewButton 
