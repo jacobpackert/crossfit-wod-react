@@ -10,14 +10,12 @@ class NewButton extends Component {
 
     handleClick(e) {
         // e.preventDefault();
-        console.log("button click")
         this.props.onButtonClick();
-    }
-
+    };
 
     render() {
         return (
-            <button onClick={this.handleClick}>{this.props.buttonContent} {this.props.emoji}</button>
+            <button onClick={this.handleClick}>{this.props.buttonContent} {this.props.emoji[Math.floor(Math.random() * this.props.emoji.length)]}</button>
         )
     }
 };

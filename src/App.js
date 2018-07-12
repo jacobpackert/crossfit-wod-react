@@ -57,7 +57,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to the Random Crossfit Wod Generator</h1>
         </header>
         <p className="App-intro">
-          This is going to be a cool project. Stay tuned..
+          Welcome to the random workout generator. Click the button to receive a random workout.
         </p>
         <WorkoutDescription wodContent={this.state.wodContent}/>
         <NewButton 
