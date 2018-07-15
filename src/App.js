@@ -13,15 +13,20 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      wodContent: [],
+      wodContent: [], //this can be changed to accept an *object* and then the component can destructure that object and parse the data it needs.
       buttonContent: ["New WOD"],
-      buttonContentEmoji: ["💪", "🏋️‍♂️", "🏃‍♂️"], //this can be mixed up so it's a random emoji later on
+      buttonContentEmoji: ["💪", "🏋️‍♂️", "🏃‍♂️"], 
+      buttonHasBeenPressed: false,
     };
     this.setWodState.bind(this);
   }
 
   setWodState(selectedWod){
     this.setState({wodContent: selectedWod})
+  }
+
+  setButtonState(){
+    this.setState({buttonHasBeenPressed: true})
   }
 
   handleButtonClick = () => {
@@ -37,9 +42,12 @@ class App extends Component {
                 response.json()
                 .then(data => {
                   let wodNumber = Math.floor(data.feed.entry.length * Math.random());
+                  console.log("name: " + data.feed.entry[wodNumber].gsx$name.$t);
+                  console.log("score: " + data.feed.entry[wodNumber].gsx$score.$t);
                   let selectedWod = data.feed.entry[wodNumber].gsx$description.$t;
                   console.log("selectedWod: " + selectedWod);
                   this.setWodState(selectedWod);
+                  this.setButtonState();
                   // this.setState({ wodContent: data.feed.entry[wodNumber].gsx$description.$t })       //something about needing to .bind(this)       
                 });
               }
@@ -49,9 +57,18 @@ class App extends Component {
             });
       };
   
-  
+  // Add a 'open number/headline' component and a 'this was your score last time' component
   render() {
-      return (
+      const buttonHasBeenPressed = this.state.buttonHasBeenPressed;
+      console.log("buttonhasbeenpressed: " + buttonHasBeenPressed);  
+      let description;
+
+      if (buttonHasBeenPressed) {
+        description = <WorkoutDescription wodContent = {this.state.wodContent} buttonHasBeenPressed={this.state.buttonHasBeenPressed}/>
+      }
+
+
+    return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to the Random Crossfit Wod Generator</h1>
@@ -59,7 +76,8 @@ class App extends Component {
         <p className="App-intro">
           Click the button to receive a random workout.
         </p>
-        <WorkoutDescription wodContent={this.state.wodContent}/>
+        {description}
+        
         <NewButton 
         buttonContent={this.state.buttonContent} 
         emoji={this.state.buttonContentEmoji}
