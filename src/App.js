@@ -44,7 +44,7 @@ class App extends Component {
                   let wodNumber = Math.floor(data.feed.entry.length * Math.random());
                   console.log("name: " + data.feed.entry[wodNumber].gsx$name.$t);
                   console.log("score: " + data.feed.entry[wodNumber].gsx$score.$t);
-                  let selectedWod = data.feed.entry[wodNumber].gsx$description.$t;
+                  let selectedWod = data.feed.entry[wodNumber];
                   console.log("selectedWod: " + selectedWod);
                   this.setWodState(selectedWod);
                   this.setButtonState();
