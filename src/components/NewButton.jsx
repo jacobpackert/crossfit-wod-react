@@ -9,7 +9,7 @@ class NewButton extends Component {
     }
 
     handleClick(e) {
-        // e.preventDefault();
+        e.preventDefault();
         this.props.onButtonClick();
     };
 
