@@ -11,7 +11,7 @@ class WorkoutAmount extends Component {
 
     handleChange(event){
         this.setState({value: event.target.value});
-        let amountofworkouts = event.target.value;
+        let amountofworkouts = parseInt(event.target.value);
         console.log(`you have now selected ${amountofworkouts} workouts`);
         this.props.onSelection(amountofworkouts);
     }
@@ -21,9 +21,9 @@ class WorkoutAmount extends Component {
             <div>
                 <form action="">
                 <select value={this.state.value} onChange={this.handleChange}>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
                     </select>
                 </form>
             </div>

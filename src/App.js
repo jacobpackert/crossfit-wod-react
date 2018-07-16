@@ -18,7 +18,7 @@ class App extends Component {
       buttonContent: ["New WOD"],
       buttonContentEmoji: ["💪", "🏋️‍♂️", "🏃‍♂️"],
       buttonHasBeenPressed: false,
-      workoutAmountSelected: [],
+      workoutAmountSelected: 1,
     };
     this.setWodState.bind(this);
     this.handleWorkoutAmountSelected = this.handleWorkoutAmountSelected.bind(this);
