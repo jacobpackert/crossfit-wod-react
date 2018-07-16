@@ -35,7 +35,6 @@ class App extends Component {
   // this function is used to store the state of amount of workouts selected in the parent component so the WorkoutAmount component can pass state upward
   handleWorkoutAmountSelected(amount){
     this.setState({ workoutAmountSelected: amount})
-    console.log(`hello from handleWorkoutAmountSelected in App.js with ${amount} selected`)
   }
 
   handleButtonClick = () => {
@@ -77,6 +76,8 @@ class App extends Component {
 
     if (buttonHasBeenPressed) {
       description = 
+      // probably some type of loop here with this.state.workoutAmountSelected controlling how many times the component will render
+      //tried with the for loop - didn't work. Should be something along the lines of a .map function
       <WorkoutDescription
         wodContent={this.state.wodContent}
         buttonHasBeenPressed={this.state.buttonHasBeenPressed}
