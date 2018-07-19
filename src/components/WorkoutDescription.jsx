@@ -5,9 +5,9 @@ class WorkoutDescription extends React.Component {
 
     render () {
         const { wodContent } = this.props;
+        console.log(wodContent);
         
         return (
-            // this component could have it's own inner state by destructuring a component it accepts as a prop
             <div>
                 <h1>
                 Open workout {wodContent.gsx$name.$t}
