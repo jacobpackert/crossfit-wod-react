@@ -48,22 +48,23 @@ class App extends Component {
 
         response.json()
           .then(data => {
-              const wodNumber = [];
+              const wodNumbers = [];
               let selectedWodObject;
               for(let i=1; i<this.state.workoutAmountSelected+1; i++){
-                wodNumber.push(
-                  Math.floor(data.feed.entry.length * Math.random())
-                );
-                console.log("pushing: " + i);
-                console.log("wodNumber is now: " + wodNumber);
-                //also need a function to make sure there is no duplicates in the array
-                selectedWodObject = wodNumber.map(x => data.feed.entry[x]);
-                console.log(selectedWodObject);
+                // making sure we don't get duplicate workouts
+                let wodNumber = Math.floor(data.feed.entry.length * Math.random());
+                // eslint-disable-next-line
+                if(wodNumber == wodNumbers.slice(-1)){
+                  i--;
+                }
+                else{
+                  wodNumbers.push(wodNumber)
+                }
+                console.log("wodNumbers is now: " + wodNumbers);
               }
-            
-            let selectedWod = data.feed.entry[wodNumber]; 
-            console.log("selectedWod: " + selectedWod);
-            console.log(selectedWod)
+            selectedWodObject = wodNumbers.map(x => data.feed.entry[x]);
+            console.log(selectedWodObject);
+
             this.setWodState(selectedWodObject);
             this.setButtonState();
           });
@@ -85,6 +86,7 @@ class App extends Component {
       description = 
       this.state.wodContent.map(i => 
         <WorkoutDescription
+          key={i.gsx$name.$t.toString()}
           wodContent={i}
           buttonHasBeenPressed={this.state.buttonHasBeenPressed}
         />
@@ -103,10 +105,9 @@ class App extends Component {
           Click the button to receive a random workout.
         </p>
 
-       <div> <WorkoutAmount
+        <WorkoutAmount
           onSelection={this.handleWorkoutAmountSelected}
         />
-        </div>
 
         {description}
 
