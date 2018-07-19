@@ -48,10 +48,6 @@ class App extends Component {
 
         response.json()
           .then(data => {
-            // Maybe the 'multiplier' function should live in here to craft an object consisting of several wods depending on the workoutAmountSelected number
-            //inspired by Andreas' code: there can be multiple return()s. You can put an additional return() in a function and then map over the data and return components and whatnot. 
-            // Inspiration from here: https://github.com/wasp129/mentor-class-react-app/blob/master/client/components/NewArticle.js line 105
-              console.log("need more wodnumbers");
               const wodNumber = [];
               let selectedWodObject;
               for(let i=1; i<this.state.workoutAmountSelected+1; i++){
@@ -63,21 +59,13 @@ class App extends Component {
                 //also need a function to make sure there is no duplicates in the array
                 selectedWodObject = wodNumber.map(x => data.feed.entry[x]);
                 console.log(selectedWodObject);
-                // selectedWodObject.map(xconsole.log(selectedWodObject[0].gsx$description.$t));
               }
             
-            // else{
-            //   var wodNumber = Math.floor(data.feed.entry.length * Math.random());
-            // }
-            
-            // console.log("name: " + data.feed.entry[wodNumber].gsx$name.$t);
-            // console.log("score: " + data.feed.entry[wodNumber].gsx$score.$t);
             let selectedWod = data.feed.entry[wodNumber]; 
             console.log("selectedWod: " + selectedWod);
             console.log(selectedWod)
             this.setWodState(selectedWodObject);
             this.setButtonState();
-            // this.setState({ wodContent: data.feed.entry[wodNumber].gsx$description.$t })       //something about needing to .bind(this)       
           });
       }
     )
@@ -91,13 +79,10 @@ class App extends Component {
     
     // conditionally render the component only if the button has been pressed
     const buttonHasBeenPressed = this.state.buttonHasBeenPressed;
-    // console.log("buttonhasbeenpressed: " + buttonHasBeenPressed);
     let description;
 
     if (buttonHasBeenPressed) {
       description = 
-      // probably some type of loop here with this.state.workoutAmountSelected controlling how many times the component will render
-      //tried with the for loop - didn't work. Should be something along the lines of a .map function
       this.state.wodContent.map(i => 
         <WorkoutDescription
           wodContent={i}
@@ -118,9 +103,10 @@ class App extends Component {
           Click the button to receive a random workout.
         </p>
 
-        <WorkoutAmount
+       <div> <WorkoutAmount
           onSelection={this.handleWorkoutAmountSelected}
         />
+        </div>
 
         {description}
 

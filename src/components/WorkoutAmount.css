@@ -1,0 +1,10 @@
+form {
+    margin: auto;
+    padding: 20px;
+}
+
+option, select {
+    font-size: 20px;
+    width: 5em;
+    height: 2em;
+}

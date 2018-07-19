@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './WorkoutAmount.css'
 
 class WorkoutAmount extends Component {
 
@@ -19,6 +20,7 @@ class WorkoutAmount extends Component {
         return (
             <div>
                 <form action="">
+                <p>How many workouts do you want?</p>
                 <select value={this.state.value} onChange={this.handleChange}>
                     <option value="1">1</option>
                     <option value="2">2</option>
