@@ -5,7 +5,7 @@ class WorkoutDescription extends React.Component {
 
     render () {
         const { wodContent } = this.props;
-        console.log(wodContent);
+        // console.log(wodContent);
         
         return (
             <div>
@@ -13,7 +13,7 @@ class WorkoutDescription extends React.Component {
                 Open workout {wodContent.gsx$name.$t}
                 </h1> 
                 <p dangerouslySetInnerHTML={{ __html: wodContent.gsx$description.$t }}></p>
-                <p id="oldscore">Your previous score was {wodContent.gsx$score.$t}</p>
+                {/* <p id="oldscore">Your previous score was {wodContent.gsx$score.$t}</p> */}
             </div>
         );
     }
