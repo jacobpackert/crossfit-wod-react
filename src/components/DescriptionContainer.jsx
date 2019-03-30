@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import WorkoutDescription from './WorkoutDescription';
-import workoutOldScore from './oldWorkoutScore';
+import OldWorkoutScore from './OldWorkoutScore';
 
 class DescriptionContainer extends Component {
+
     render() {
+        const { wodContent } = this.props;
+
         return (
-            <WorkoutDescription></WorkoutDescription>
-            <workoutOldScore></workoutOldScore>
+            <div>
+                <WorkoutDescription 
+                    wodContent={ wodContent }
+                    />
+                <OldWorkoutScore
+                    wodContent={wodContent}
+                    />
+            </div>
         );
     }
 }

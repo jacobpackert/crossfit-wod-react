@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import NewButton from './components/NewButton';
-import WorkoutDescription from './components/WorkoutDescription';
+// import WorkoutDescription from './components/WorkoutDescription';
 import WorkoutAmount from './components/WorkoutAmount';
+import DescriptionContainer from './components/DescriptionContainer';
 
 let url = process.env.REACT_APP_DB_URL;
 
@@ -80,12 +81,12 @@ class App extends Component {
     
     // conditionally render the component only if the button has been pressed
     const buttonHasBeenPressed = this.state.buttonHasBeenPressed;
-    let description;
+    let container;
 
     if (buttonHasBeenPressed) {
-      description = 
+      container = 
       this.state.wodContent.map(i => 
-        <WorkoutDescription
+        <DescriptionContainer
           key={i.gsx$name.$t.toString()}
           wodContent={i}
           buttonHasBeenPressed={this.state.buttonHasBeenPressed}
@@ -109,7 +110,7 @@ class App extends Component {
           onSelection={this.handleWorkoutAmountSelected}
         />
 
-        {description}
+        {container}
 
         <NewButton
           buttonContent={this.state.buttonContent}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class workoutOldScore extends Component {
+class OldWorkoutScore extends Component {
     render() {
         const { wodContent } = this.props;
 
@@ -12,4 +12,4 @@ class workoutOldScore extends Component {
     }
 }
 
-export default workoutOldScore;
+export default OldWorkoutScore;
