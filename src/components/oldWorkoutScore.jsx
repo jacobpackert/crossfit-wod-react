@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 class OldWorkoutScore extends Component {
+    
     render() {
         const { wodContent } = this.props;
 
