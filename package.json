@@ -1,10 +1,10 @@
 {
   "name": "crossfit-wod-react",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "private": true,
   "engines": {
     "npm": "6.1.0",
-    "node": "10.6.0"
+    "node": "^11.13.0"
   },
   "dependencies": {
     "dotenv": "^6.0.0",
@@ -16,8 +16,17 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject", 
-    "heroku-postbuild": "yarn && yarn run build"
-
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "yarn && yarn run build",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "devDependencies": {
+    "@storybook/react": "^5.0.5",
+    "@storybook/addon-actions": "^5.0.5",
+    "@storybook/addon-links": "^5.0.5",
+    "@storybook/addons": "^5.0.5",
+    "@babel/core": "^7.4.0",
+    "babel-loader": "^8.0.5"
   }
 }
