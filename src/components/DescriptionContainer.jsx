@@ -10,7 +10,7 @@ class DescriptionContainer extends Component {
         return (
             <div>
                 <WorkoutDescription 
-                    wodContent={ wodContent }
+                    wodContent={wodContent}
                     />
                 <OldWorkoutScore
                     wodContent={wodContent}
