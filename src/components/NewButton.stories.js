@@ -12,4 +12,10 @@ storiesOf('NewButton', module)
         onButtonClick={action('clicked')}
         emoji = {emojiArray}
         buttonContent={"New WOD"}>
-    </NewButton> );
+    </NewButton> )
+        .add('lang tekst', () => 
+        <NewButton
+            onButtonClick={action('clicked')}
+            emoji = {emojiArray}
+            buttonContent={"Nu vil jeg gerne have en ny workout, tak"}>
+        </NewButton> );

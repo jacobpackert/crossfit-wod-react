@@ -9,7 +9,17 @@ const wodContent = {
     }
 }
 
+const wodContent2 = {
+    "gsx$score": {
+        "$t": "10 runder og 8 dødløft"
+    }
+}
+
 storiesOf('OldWorkoutScore', module)
     .add('default', () =>
     <OldWorkoutScore wodContent={ wodContent }></OldWorkoutScore>
     )
+    .add('tekst', () =>
+    <OldWorkoutScore wodContent={ wodContent2 }></OldWorkoutScore>
+    )
+    
