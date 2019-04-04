@@ -15,7 +15,10 @@ class NewButton extends Component {
 
     render() {
         return (
-            <button onClick={this.handleClick}>{this.props.buttonContent} {this.props.emoji[Math.floor(Math.random() * this.props.emoji.length)]}</button>
+            <button onClick={this.handleClick}>
+                {this.props.buttonContent}
+                {this.props.emoji[Math.floor(Math.random() * this.props.emoji.length)]}
+            </button>
         )
     }
 };

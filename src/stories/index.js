@@ -9,7 +9,7 @@ import { Welcome } from '@storybook/react/demo';
 // import { NewButton } from '../components'
 import { WorkoutAmount } from '../components'
 
-// storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
+storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
 // storiesOf('NewButton', module)
 //   .add('with text', () => <NewButton>Hello Button</NewButton>)
