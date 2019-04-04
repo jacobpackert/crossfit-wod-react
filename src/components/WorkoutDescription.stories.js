@@ -8,9 +8,6 @@ const wodContent = {
     },
     "gsx$description": {
         "$t": "do epic shit"
-    },
-    "gsx$score": {
-        "$t": "118"
     }
 }
 
